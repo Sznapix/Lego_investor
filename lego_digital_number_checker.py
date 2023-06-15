@@ -13,8 +13,9 @@ def checker(napis):
         else:
             print("to nie jest kod")
 #checker(napis)
-link2 = requests.get("https://www.brickeconomy.com/search?query=92176")
+
+link2 = requests.get("https://zklockow.pl/lego-10283-wahadlowiec-discovery-nasa")
 soup2 = BeautifulSoup(link2.text, 'html.parser')
-print(soup2)
+print(soup2.get_text())
 #global_price =soup2.find(class_='table table-hover ctlsets-table')
 #print(global_price)
