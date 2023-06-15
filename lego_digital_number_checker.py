@@ -12,7 +12,7 @@ def checker(napis):
             print("to jest kod")
         else:
             print("to nie jest kod")
-#checker(napis)
+checker(napis)
 
 link2 = requests.get("https://zklockow.pl/lego-10283-wahadlowiec-discovery-nasa")
 soup2 = BeautifulSoup(link2.text, 'html.parser')
