@@ -16,6 +16,7 @@ def checker(napis):
 
 link2 = requests.get("https://zklockow.pl/lego-10283-wahadlowiec-discovery-nasa")
 soup2 = BeautifulSoup(link2.text, 'html.parser')
-print(soup2.get_text())
+global_price =soup2.find(class_='WraPri')
+print(global_price.get_text())
 #global_price =soup2.find(class_='table table-hover ctlsets-table')
 #print(global_price)

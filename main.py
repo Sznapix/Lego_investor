@@ -25,14 +25,16 @@ for i in range(pages):
         name = name.get_text()
         digital_code = str(checker(name))
         if digital_code != "brak kodu":
-            link2 = requests.get('https://www.brickeconomy.com/search?query=' + digital_code)
+            link2 = requests.get('https://zklockow.pl/lego-' + digital_code)
             soup2 = BeautifulSoup(link2.text, 'html.parser')
-            global_price =soup2.find(class_='ctlsets-right text-right')
+            global_price =soup2.find(class_='WraPri')
+            print(global_price.get_text())
         else:
             pass
         price = offers.find('p', {'data-testid': 'ad-price'})
-        print("nazwa zestawu to : " + name + " Jego kod to: " + digital_code + " kosztuje on : " + price.get_text() + " Link do strony: " + "https://www.olx.pl" + str(link_offer.get('href')))
+        print("nazwa zestawu to : " + name + " Jego kod to: " + digital_code + " na olx kosztuje on : " + (" Ogólna cena to: ") + global_price  + " Link do strony: " + "https://www.olx.pl" + str(link_offer.get('href')))
 
     link = requests.get('https://www.olx.pl/dla-dzieci/zabawki/q-lego/?page=' + str(number))
     soup = BeautifulSoup(link.text, 'html.parser')
 
+#str(price.get_text())
