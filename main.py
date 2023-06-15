@@ -14,7 +14,7 @@ def checker(name):
         if len(i) == 5:
             return (i)
         else:
-           return ("brak kodu")
+            return "brak kodu"
 
 
 for i in range(pages):
@@ -24,17 +24,18 @@ for i in range(pages):
         name = offers.find(class_='css-16v5mdi er34gjf0')
         name = name.get_text()
         digital_code = str(checker(name))
-        if digital_code != "brak kodu":
-            link2 = requests.get('https://zklockow.pl/lego-' + digital_code)
+
+        if digital_code != "brak kodu" and digital_code != "None":
+            link2 = requests.get("https://zklockow.pl/lego-" + digital_code)
             soup2 = BeautifulSoup(link2.text, 'html.parser')
-            global_price =soup2.find(class_='WraPri')
-            print(global_price.get_text())
+            price = offers.find('p', {'data-testid': 'ad-price'})
+            global_price = soup2.find(class_='WraPri')
+            if str(global_price) != "None":
+                print("nazwa zestawu to : " + name + " Jego kod to: " + str(digital_code) + " na olx kosztuje on : " + str(price.get_text()) + (" Ogólna cena to: ") + str(global_price.get_text()) + " Link do strony: " + "https://www.olx.pl" + str(link_offer.get('href')))
+            else:
+                print("Oferta nie istnieje")
         else:
             pass
-        price = offers.find('p', {'data-testid': 'ad-price'})
-        print("nazwa zestawu to : " + name + " Jego kod to: " + digital_code + " na olx kosztuje on : " + (" Ogólna cena to: ") + global_price  + " Link do strony: " + "https://www.olx.pl" + str(link_offer.get('href')))
 
     link = requests.get('https://www.olx.pl/dla-dzieci/zabawki/q-lego/?page=' + str(number))
     soup = BeautifulSoup(link.text, 'html.parser')
-
-#str(price.get_text())
