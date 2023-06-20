@@ -6,7 +6,7 @@ digital_number = ["2137","666","42042","1611","55555"]
 napis = "tutaj 22 jest 42322 sciernisko 23 o kurde 23325 32"
 x = re.findall(r'\b\d+\b', napis)
 
-def checker(napis):
+"""def checker(napis):
     x = re.findall(r'\b\d+\b', napis)
     for i in x:
         if len(i) == 5:
@@ -27,3 +27,10 @@ query= "INSERT INTO oferty (offer_name, digital_number, link, offer_price, globa
 cursor.execute(query)
 connection.commit()
 connection.close()
+"""
+choice = str(input("Podaj swój wybór"))
+match choice:
+    case 'ddd':
+        print("test1")
+    case 'jddd':
+        print("test2")
