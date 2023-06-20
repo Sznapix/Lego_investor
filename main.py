@@ -51,4 +51,11 @@ def clear_database():
     query ="DELETE FROM oferty"
     cursor.execute(query)
     connection.commit()
-
+    connection.close()
+def print_all_values_in_database():
+    query ="SELECT * FROM oferty"
+    print(cursor.execute(query))
+    for query in cursor:
+        print(query)
+    connection.close()
+print_all_values_in_database()
