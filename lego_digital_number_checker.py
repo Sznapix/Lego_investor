@@ -25,6 +25,7 @@ connection = mysql.connector.connect(user="root", host='localhost', password=Non
 cursor = connection.cursor()
 query= "INSERT INTO oferty (offer_name, digital_number, link, offer_price, global_price) VALUES ('{}',{},'{}',{},{})".format('d222',22,"testujemy222",223,233)
 cursor.execute(query)
+
 connection.commit()
 connection.close()
 """

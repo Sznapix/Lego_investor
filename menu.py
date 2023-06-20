@@ -26,4 +26,4 @@ while True:
         case "5":
             break
         case _ :
-            print("Nie podałeś zadnej wartości lub podałeś błędną podaj ją jeszcze raz")
+            print("Nie podałeś zadnej opcji lub podałeś błędną podaj ją jeszcze raz")
