@@ -14,7 +14,7 @@ while True:
         case "1":
             main.adding_to_database()
         case "2":
-            print("test2")
+            main.print_all_values_in_database()
         case "3":
             print("test3")
         case "4":

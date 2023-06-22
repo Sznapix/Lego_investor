@@ -46,16 +46,17 @@ def adding_to_database():
         link = requests.get('https://www.olx.pl/dla-dzieci/zabawki/q-lego/?page=' + str(number))
         soup = BeautifulSoup(link.text, 'html.parser')
 
-    connection.close()
+
 def clear_database():
     query ="DELETE FROM oferty"
+    query2 ="ALTER TABLE oferty AUTO_INCREMENT =1;"
     cursor.execute(query)
+    cursor.execute(query2)
     connection.commit()
-    connection.close()
+
 def print_all_values_in_database():
     query ="SELECT * FROM oferty"
     print(cursor.execute(query))
     for query in cursor:
         print(query)
-    connection.close()
-print_all_values_in_database()
+
