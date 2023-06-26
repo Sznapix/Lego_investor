@@ -32,10 +32,20 @@ def adding_to_database():
                 link2 = requests.get("https://zklockow.pl/lego-" + digital_code)
                 soup2 = BeautifulSoup(link2.text, 'html.parser')
                 price = offers.find('p', {'data-testid': 'ad-price'})
-                global_price = soup2.find(class_='WraPri')
+                price = price.get_text()
+                global_price = soup2.find(class_='pp')
+                global_price = global_price.get_text()
+                global_price = global_price.replace("zł","")
+                global_price = global_price.replace(" ", "")
+                global_price = global_price.replace(",", ".")
+                global_price = global_price.replace("od","")
                 if str(global_price) != "None":
-                    print("nazwa zestawu to : " + name + " Jego kod to: " + str(digital_code) + " na olx kosztuje on : " + str(price.get_text()) + (" Ogólna cena to: ") + str(global_price.get_text()) + " Link do strony: " + "https://www.olx.pl" + str(link_offer.get('href')))
-                    query = "INSERT INTO oferty (offer_name, digital_number, link, offer_price, global_price) VALUES ('{}',{},'{}',{},{})".format(name, digital_code, "https://www.olx.pl" , 222,22)
+                    pr = str(price.replace("zł",""))
+                    pr = pr.replace(" ", "").replace("donegocjacji","")
+
+
+                    print("nazwa zestawu to : " + name + " Jego kod to: " + str(digital_code) + " na olx kosztuje on : " + str(pr) + (" Ogólna cena to: ") + str(global_price) + " Link do strony: " + "https://www.olx.pl" + str(link_offer.get('href')))
+                    query = "INSERT INTO oferty (offer_name, digital_number, link, offer_price, global_price) VALUES ('{}',{},'{}',{},{})".format(name, digital_code, "https://www.olx.pl" , pr,global_price)
                     cursor.execute(query)
                     connection.commit()
                 else:
