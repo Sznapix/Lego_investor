@@ -35,4 +35,3 @@ match choice:
         print("test1")
     case 'jddd':
         print("test2")
-x = 10 0

@@ -35,17 +35,14 @@ def adding_to_database():
                 price = price.get_text()
                 global_price = soup2.find(class_='pp')
                 global_price = global_price.get_text()
-                global_price = global_price.replace("zł","")
-                global_price = global_price.replace(" ", "")
-                global_price = global_price.replace(",", ".")
-                global_price = global_price.replace("od","")
+                global_price = global_price.replace("zł","").replace(" ", "").replace(",", ".").replace("od","")
                 if str(global_price) != "None":
                     pr = str(price.replace("zł",""))
                     pr = pr.replace(" ", "").replace("donegocjacji","")
+                    link = "https://www.olx.pl" + str(link_offer.get('href'))
 
-
-                    print("nazwa zestawu to : " + name + " Jego kod to: " + str(digital_code) + " na olx kosztuje on : " + str(pr) + (" Ogólna cena to: ") + str(global_price) + " Link do strony: " + "https://www.olx.pl" + str(link_offer.get('href')))
-                    query = "INSERT INTO oferty (offer_name, digital_number, link, offer_price, global_price) VALUES ('{}',{},'{}',{},{})".format(name, digital_code, "https://www.olx.pl" , pr,global_price)
+                    print("nazwa zestawu to : " + name + " Jego kod to: " + str(digital_code) + " na olx kosztuje on : " + str(pr) + (" Ogólna cena to: ") + str(global_price) + " Link do strony: " + link)
+                    query = "INSERT INTO oferty (offer_name, digital_number, link, offer_price, global_price) VALUES ('{}',{},'{}',{},{})".format(name, digital_code, link , pr,global_price)
                     cursor.execute(query)
                     connection.commit()
                 else:
@@ -70,3 +67,8 @@ def print_all_values_in_database():
     for query in cursor:
         print(query)
 
+def the_best_offer():
+    query="SELECT global_price - offer_price, offer_name, link , global_price, offer_price FROM oferty;"
+    print(cursor.execute(query))
+    for query in cursor:
+        print(query)

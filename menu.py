@@ -16,7 +16,7 @@ while True:
         case "2":
             main.print_all_values_in_database()
         case "3":
-            print("test3")
+            main.the_best_offer()
         case "4":
             warning = input("Czy na pewno chcesz wyczyścić baze danych? Jeśli tak napisz TAK: ")
             if warning == "TAK":
