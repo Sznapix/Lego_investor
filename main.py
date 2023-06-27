@@ -68,7 +68,11 @@ def print_all_values_in_database():
         print(query)
 
 def the_best_offer():
-    query="SELECT global_price - offer_price, offer_name, link , global_price, offer_price FROM oferty;"
-    print(cursor.execute(query))
-    for query in cursor:
-        print(query)
+    query="UPDATE oferty SET wynik = global_price - offer_price WHERE wynik IS NULL;"
+    cursor.execute(query)
+    connection.commit()
+    query2 = "SELECT offer_name, link, digital_number, global_price, offer_price FROM oferty ORDER BY wynik DESC;"
+    cursor.execute(query2)
+    for query2 in cursor:
+        print(query2)
+
