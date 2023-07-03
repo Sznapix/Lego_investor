@@ -72,7 +72,7 @@ def the_best_offer():
     cursor.execute(query)
     connection.commit()
     query2 = "SELECT offer_name, link, digital_number, global_price, offer_price FROM oferty ORDER BY wynik DESC;"
-    cursor.execute(query2)
+    print(cursor.execute(query2))
     for query2 in cursor:
         print(query2)
 
